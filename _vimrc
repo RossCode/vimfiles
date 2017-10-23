@@ -4,6 +4,9 @@ set nocompatible
 " Better command-line completion
 set wildmenu
 
+" Set location for swap files
+set dir=~/vimfiles/swp//
+
 " Set powershell as my default shell
 "set shell=powershell
 "set shellcmdflag=-command
@@ -42,6 +45,10 @@ Plugin 'MattesGroeger/vim-bookmarks'
 Plugin 'gcmt/wildfire.vim'
 Plugin 'habamax/vim-skipit'
 Plugin 'unblevable/quick-scope'
+Plugin 'editorconfig/editorconfig-vim'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-ragtag'
+Plugin 'tmhedberg/matchit'
 
 Plugin 'kana/vim-textobj-user'
 Plugin 'Julian/vim-textobj-brace'
@@ -53,7 +60,6 @@ Plugin 'beloglazov/vim-textobj-punctuation'
 Plugin 'beloglazov/vim-textobj-quotes'
 Plugin 'saihoooooooo/vim-textobj-space'
 Plugin 'Julian/vim-textobj-variable-segment'
-Plugin 'jceb/vim-textobj-uri'
 
 call vundle#end()
 filetype plugin indent on
@@ -85,7 +91,10 @@ set guioptions=ce
 set ignorecase
 set smartcase
 
+" Show the current line number and relative line numbers around it.
 set number
+set relativenumber
+
 set nowrap
 set clipboard=unnamed
 
@@ -105,11 +114,11 @@ set cursorline
 
 set scrolloff=8
 
-if has('gui_running')
+"if has('gui_running')
     set background=dark
-else
-    set background=light
-end
+"else
+"    set background=light
+"end
 
 colorscheme solarized
 let g:solarized_termtrans=1
@@ -126,7 +135,7 @@ let g:bookmark_auto_close = 1
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
-  set mouse=a
+set mouse=a
 endif
 
 syntax on
@@ -165,7 +174,7 @@ nnoremap <c-d> dd
 inoremap <c-d> <esc>ddi
 
 " Map pp to paste in insert mode from the default register
-inoremap pp <C-r>0
+inoremap <s-p><s-p> <C-r>0
 
 " Map Ctrl-s to save a file in normal and insert mode
 nnoremap <c-s> :w<CR>
@@ -180,15 +189,15 @@ noremap <c-h> <c-w>h
 " Map Alt with j, k, l and h to resize the splits.
 noremap <a-j> <c-w>-
 noremap <a-k> <c-w>+
-noremap <a-l> <c-w><
-noremap <a-h> <c-w>>
+noremap <a-l> <c-w>>
+noremap <a-h> <c-w><
 
 " Map Shift j and k to switch tabs
 nnoremap <s-j> gt
 nnoremap <s-k> gT
 
-"Map autocomplete to tab
-inoremap <tab> <c-n>
+"Map autocomplete to leader tab
+inoremap <localleader><tab> <c-n>
 
 " map H and L to go to start and end of line
 nnoremap H ^
